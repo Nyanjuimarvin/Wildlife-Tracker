@@ -1,7 +1,5 @@
 package Models;
 
-import org.sql2o.Connection;
-
 import java.util.List;
 
 public class UnthreatenedAnimal extends Animal implements Query{

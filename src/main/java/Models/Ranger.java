@@ -6,11 +6,12 @@ public class Ranger {
     private String name;
     private String contact;
     private int sightings;
+    private int badgeId;
     private int id;
 
-    public Ranger(String name,String contact, int id) {
+    public Ranger(String name,String contact, int badgeId) {
         this.name = name;
-        this.id = id;
+        this.badgeId = badgeId;
         this.contact = contact;
     }
 

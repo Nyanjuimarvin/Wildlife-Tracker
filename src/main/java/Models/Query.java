@@ -1,7 +1,5 @@
 package Models;
 
-import jdk.jpackage.internal.Arguments;
-
 import java.util.List;
 
 public interface Query {

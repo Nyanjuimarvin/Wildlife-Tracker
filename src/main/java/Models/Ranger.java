@@ -1,13 +1,32 @@
 package Models;
 
+import java.util.Objects;
+
 public class Ranger {
     private String name;
-    private int id;
+    private String contact;
     private int sightings;
+    private int id;
 
-    public Ranger(String name, int id) {
+    public Ranger(String name,String contact, int id) {
         this.name = name;
         this.id = id;
+        this.contact = contact;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Ranger)) return false;
+        Ranger ranger = (Ranger) o;
+        return id == ranger.id
+                && Objects.equals(name, ranger.name)
+                && Objects.equals(contact, ranger.contact);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, contact, id);
     }
 
     public void setSightings(int sightings) {
@@ -20,6 +39,10 @@ public class Ranger {
 
     public int getId() {
         return id;
+    }
+
+    public String getContact() {
+        return contact;
     }
 
     public int getSightings() {

@@ -6,7 +6,6 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
-import java.util.Calendar;
 
 public class DatabaseRule implements AfterEachCallback, BeforeEachCallback {
     @Override

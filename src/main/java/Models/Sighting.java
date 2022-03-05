@@ -1,11 +1,14 @@
 package Models;
 
+import java.sql.Timestamp;
+
 public class Sighting {
 
     private int sightingId;
     private int rangerId;
     private int locationId;
     private int animalId;
+    private Timestamp timeRecorded;
 
     public Sighting (int animalId,int rangerId,int locationId){
         this.rangerId = rangerId;

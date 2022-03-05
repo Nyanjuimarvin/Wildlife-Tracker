@@ -6,6 +6,7 @@ public abstract class Animal {
     public String health;
 
     private int id;
+    public String type;
 
     public Animal(String ageRange, String name, String health) {
         this.ageRange = ageRange;

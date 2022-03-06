@@ -3,6 +3,7 @@ package Models;
 import Exceptions.InvalidRangerDetails;
 import org.sql2o.Connection;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -113,5 +114,28 @@ public class Ranger {
                     .addParameter("id",id)
                     .executeAndFetchFirst(Ranger.class);
         }
+    }
+
+    //Return all animals ranger has sighted
+    public List <Object> rangerSightings(){
+        List <Object> allSightings = new ArrayList<>();
+        try(Connection conn  = Db.sql2o.open()){
+            String endangered = "SELECT * FROM animals WHERE rangerid = :id AND type = 'Endangered';";
+            List <EndangeredAnimal> allSighted = conn.createQuery(endangered)
+                    .addParameter("id",this.id)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetch(EndangeredAnimal.class);
+
+            allSightings.addAll(allSighted);
+
+            String unthreatened = "SELECT * FROM animals WHERE rangerid = :id AND type = 'Unthreatened';";
+            List <UnthreatenedAnimal> allUaSightings = conn.createQuery(unthreatened)
+                    .addParameter("id",this.id)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetch(UnthreatenedAnimal.class);
+            allSightings.addAll(allUaSightings);
+
+            }
+        return allSightings;
     }
 }

@@ -100,4 +100,6 @@ public class Location {
                     .executeAndFetchFirst(Location.class);
         }
     }
+
+
 }

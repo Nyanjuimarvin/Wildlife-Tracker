@@ -41,4 +41,21 @@ public class EndangeredAnimal extends Animal{
                     .executeAndFetchFirst(EndangeredAnimal.class);
         }
     }
+
+    //Nt
+    public static void deleteAll(){
+        try( Connection conn = Db.sql2o.open() ){
+            String sql = "DELETE FROM animals where type = 'Endangered'";
+             conn.createQuery(sql).executeUpdate();
+        }
+    }
+
+    //Nt
+    public static void deletebyId(int id){
+        try( Connection conn = Db.sql2o.open() ){
+            String sql = "DELETE FROM animals where id = :id type = 'Endangered'";
+            conn.createQuery(sql).addParameter("id",id).executeUpdate();
+        }
+    }
+
 }

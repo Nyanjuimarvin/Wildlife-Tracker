@@ -47,4 +47,20 @@ public class UnthreatenedAnimal extends Animal{
         }
     }
 
+    //Nt
+    public static void deleteAll(){
+        try( Connection conn = Db.sql2o.open() ){
+            String sql = "DELETE FROM animals where type = 'Unthreatened'";
+            conn.createQuery(sql).executeUpdate();
+        }
+    }
+
+    //Nt
+    public static void deletebyId(int id){
+        try( Connection conn = Db.sql2o.open() ){
+            String sql = "DELETE FROM animals where id = :id type = 'Unthreatened'";
+            conn.createQuery(sql).addParameter("id",id).executeUpdate();
+        }
+    }
+
 }

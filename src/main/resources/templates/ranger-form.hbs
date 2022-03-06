@@ -1,0 +1,26 @@
+{{#partial "content"}}
+<div class="row squad-form pt-5">
+    <div class="col-md-4"></div>
+<div class="col-md-4 mt-5">
+    <form action="/rangers" method="post">
+        <div class="form-group mb-4">
+            <label for="name" class="fs-4 mb-2">Name:</label>
+            <input type="text" class="form-control" id="name" name="name">
+        </div>
+        <div class="form-group mb-4">
+            <label for="maxSize" class="fs-4 mb-2">Badge Id:</label>
+            <input type="number" class="form-control" id="badgeId" name="badgeId">
+        </div>
+        <div class="form-group mb-4">
+
+            <label for="cause" class="fs-4 mb-2">Contact</label>
+            <input type="text" class="form-control" id="contact" name="contact">
+        </div>
+
+        <button class="btn btn-success d-block mx-auto" type="submit">Login</button>
+    </form>
+</div>
+<div class="col-md-4"></div>
+</div>
+{{/partial}}
+{{>layout.hbs}}

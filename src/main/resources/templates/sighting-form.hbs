@@ -1,0 +1,54 @@
+{{#partial "content"}}
+    <div class="col-md-4"></div>
+    <div class="col-md-4 mt-5 forms">
+        <form action="/sighting" method="post">
+
+            <div class="form-group mb-4">
+                <label for="name" class="fs-4 mb-2">Animal Name:</label>
+                <input type="text" class="form-control" id="name" name="newname" value="{{hero.name}}">
+            </div>
+            <div class="form-group mb-4">
+                <label for="age" class="fs-4 mb-2">Animal Age:</label>
+                <select name="age" class="form-control" id="age">
+                    <option disabled selected>Select Animal Age Range</option>
+                    <option value="Newborn">Newborn</option>
+                    <option  value="Young">Young</option>
+                    <option value="Adult">Adult</option>
+                </select>
+            </div>
+
+
+
+            <div class="form-group mb-4">
+
+                <label for="health" class="fs-4 mb-2">Health state:</label>
+                <select name="health" class="form-control" id="health">
+                    <option disabled selected>Select Animal Health</option>
+                    <option  value="Healthy">Healthy</option>
+                    <option value="Okay">Okay</option>
+                    <option value="Ill">Ill</option>
+                </select>
+            </div>
+            <div class="form-group mb-4">
+
+                <label for="location" class="fs-4 mb-2">Location Name:</label>
+                <input type="text" class="form-control" id="locationname" name="locationname">
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="">Latitude:</label>
+                <input type="number" name="latitude" class="form-control" id="latitude">
+            </div>
+            <div class="form-group mb-4">
+
+                <label for="" class="fs-4 mb-2">longitude:</label>
+                <input type="number" class="form-control" id="longitude" name="longitude">
+            </div>
+
+            <button class="btn btn-success d-block mx-auto" type="submit">Add Sighting</button>
+        </form>
+    </div>
+<div class="col-md-4"></div>
+
+{{/partial}}
+{{>layout.hbs}}

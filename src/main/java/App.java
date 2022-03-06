@@ -15,5 +15,17 @@ public class App {
             Map <String, Object> model = new HashMap<>();
             return new ModelAndView(model,"index.hbs");
         },new HandlebarsTemplateEngine());
+
+        //Get Ranger Form
+        get("/rangers",(request, response) -> {
+            Map <String,Object> model = new HashMap<>();
+            return new ModelAndView(model,"ranger-form.hbs");
+        },new HandlebarsTemplateEngine());
+
+        //Get Sighting Form
+        get("/sighting",(request, response) -> {
+            Map <String,Object> model = new HashMap<>();
+            return new ModelAndView(model,"sighting-form.hbs");
+        },new HandlebarsTemplateEngine());
     }
 }

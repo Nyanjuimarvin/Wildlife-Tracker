@@ -28,7 +28,7 @@ public class Animal {
         this.setName(name);
         this.setHealth(health);
         this.setAgeRange(ageRange);
-        this.setRangerId(rangerId);
+        this.rangerId = rangerId;
         }catch(InvalidEntryException ex){
             System.out.println(ex.getMessage());
         }
@@ -80,18 +80,10 @@ public class Animal {
     }
 
     public void setName(String name) throws InvalidEntryException {
-        if(name.matches("([a-zA-z]+|[a-zA-Z]+\\s[a-zA-Z]+)*" )){
+        if(name.matches("([a-zA-z]+|[a-zA-Z]+\\s[a-zA-Z]+)*" ) ){
             this.name = name;
         }else{
             throw new InvalidEntryException("Please Enter Your Name Again");
-        }
-    }
-
-    public void setRangerId(int rangerId) throws InvalidEntryException {
-        if( rangerId > 0 && rangerId<= 100_000 ){
-            this.rangerId = rangerId;
-        }else{
-            throw new InvalidEntryException("Please Enter Your ID Again..Kindly make sure it is correct");
         }
     }
 

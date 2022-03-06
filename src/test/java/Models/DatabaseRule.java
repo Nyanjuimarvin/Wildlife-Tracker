@@ -20,9 +20,11 @@ public class DatabaseRule implements AfterEachCallback, BeforeEachCallback {
             String deleteAnimals = "DELETE FROM animals *;";
             String deleteSightings = "DELETE FROM sightings *;";
             String deleteLocations = "DELETE FROM locations *;";
+            String deleteRangers = "DELETE FROM rangers *;";
             conn.createQuery(deleteAnimals).executeUpdate();
             conn.createQuery(deleteSightings).executeUpdate();
             conn.createQuery(deleteLocations).executeUpdate();
+            conn.createQuery(deleteRangers).executeUpdate();
         }
     }
 

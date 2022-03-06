@@ -1,5 +1,6 @@
 package Models;
 
+import Exceptions.InvalidEntryException;
 import dao.UnthreatenedDao;
 import org.sql2o.Connection;
 
@@ -10,7 +11,7 @@ public class UnthreatenedAnimal extends Animal implements UnthreatenedDao {
 
     public static final String RISK_CATEGORY = "Unthreatened";
 
-    public UnthreatenedAnimal(String name, String ageRange, String health,int rangerID){
+    public UnthreatenedAnimal(String name, String ageRange, String health,int rangerID) throws InvalidEntryException {
         super(name, ageRange, health,rangerID);
         type = RISK_CATEGORY;
     }

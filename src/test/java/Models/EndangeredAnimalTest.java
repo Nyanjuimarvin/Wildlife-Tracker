@@ -1,5 +1,6 @@
 package Models;
 
+import Exceptions.InvalidEntryException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,7 +14,7 @@ class EndangeredAnimalTest {
 
     EndangeredAnimal animal;
 
-    public EndangeredAnimal setUp(){
+    public EndangeredAnimal setUp() throws Exception {
         return new EndangeredAnimal("Dodo","Adult","Healthy",4);
     }
 
@@ -21,14 +22,14 @@ class EndangeredAnimalTest {
 
     @Test
     @DisplayName("Instantiates Correctly")
-    public void EndangeredAnimal_InstantiatesCorrectly_True(){
+    public void EndangeredAnimal_InstantiatesCorrectly_True() throws Exception {
         EndangeredAnimal animal = new EndangeredAnimal("Dodo","Adult","Healthy",4);
         assertTrue(animal instanceof EndangeredAnimal);
     }
 
     @Test
     @DisplayName("Instantiates with properties")
-    public void EndangeredAnimal_InstantiatesWithProperties_True(){
+    public void EndangeredAnimal_InstantiatesWithProperties_True() throws Exception {
         EndangeredAnimal animal = new EndangeredAnimal("Dodo","Adult","Healthy",4);
         assertEquals("Dodo",animal.getName());
         assertEquals("Adult",animal.getAgeRange());
@@ -38,7 +39,7 @@ class EndangeredAnimalTest {
 
     @Test
     @DisplayName("Instantiates with id")
-    public void EndangeredAnimal_InstantiatesWithId_True(){
+    public void EndangeredAnimal_InstantiatesWithId_True() throws Exception {
         EndangeredAnimal animal = new EndangeredAnimal("Dodo","Adult","Healthy",4);
         int initialId = animal.getId();
         animal.saveAnimal();
@@ -47,7 +48,7 @@ class EndangeredAnimalTest {
 
     @Test
     @DisplayName("Save saves all Animals")
-    public void save_SavesAllAnimals (){
+    public void save_SavesAllAnimals () throws Exception {
         animal = setUp();
         animal.saveAnimal();
         EndangeredAnimal animal1 = new EndangeredAnimal("Red Panda","Young","Okay",3433);
@@ -56,7 +57,7 @@ class EndangeredAnimalTest {
     }
     @Test
     @DisplayName("Objects are equal")
-    public void EndangeredAnimals_CheckObjectEquality_True(){
+    public void EndangeredAnimals_CheckObjectEquality_True() throws Exception {
         animal = setUp();
         animal.saveAnimal();
         assertTrue(EndangeredAnimal.all().get(0).equals(animal));
@@ -64,7 +65,7 @@ class EndangeredAnimalTest {
 
     @Test
     @DisplayName("Animal Is Found By Id")
-    public void find_FindsAnimalsAtGivenId_EndangeredAnimal(){
+    public void find_FindsAnimalsAtGivenId_EndangeredAnimal() throws Exception {
         animal = setUp();
         animal.saveAnimal();
         EndangeredAnimal animal1 = new EndangeredAnimal("Red Panda","Young","Okay",3433);

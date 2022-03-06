@@ -1,5 +1,7 @@
 package Models;
 
+
+import Exceptions.InvalidEntryException;
 import org.sql2o.Connection;
 
 import java.util.Objects;
@@ -13,19 +15,23 @@ public class Animal {
     private int id;
     public String type;
 
-    private static final String MAX_HEALTH = "Healthy";
-    private static final String MID_HEALTH = "Okay";
-    private static final String MIN_HEALTH = "Ill";
+    public static final String MAX_HEALTH = "Healthy";
+    public static final String MID_HEALTH = "Okay";
+    public static final String MIN_HEALTH = "Ill";
 
-    private static final String MAX_AGE ="Adult";
-    private static final String MID_AGE = "Young";
-    private static final String MIN_AGE = "Newborn";
+    public static final String MAX_AGE ="Adult";
+    public static final String MID_AGE = "Young";
+    public static final String MIN_AGE = "Newborn";
 
-    public Animal(String name, String ageRange, String health,int rangerId) {
-        this.ageRange = ageRange ;
-        this.name = name;
-        this.health = health;
-        this.rangerId = rangerId;
+    public Animal(String name, String ageRange, String health,int rangerId) throws InvalidEntryException {
+        try{
+        this.setName(name);
+        this.setHealth(health);
+        this.setAgeRange(ageRange);
+        this.setRangerId(rangerId);
+        }catch(InvalidEntryException ex){
+            System.out.println(ex.getMessage());
+        }
     }
 
 
@@ -46,16 +52,47 @@ public class Animal {
         return Objects.hash(name, health, ageRange, rangerId, type);
     }
 
-    public void setName(String name) {
-        this.name = name;
+
+    public void setHealth(String health) throws InvalidEntryException {
+        if(health.equals(MAX_HEALTH)){
+            this.health = MAX_HEALTH;
+        }else if(health.equals(MID_HEALTH)){
+            this.health = MID_HEALTH;
+        }else if(health.equals(MIN_HEALTH)){
+            this.health = MIN_HEALTH;
+        }
+        else{
+            throw new InvalidEntryException("Please Select The Given Options for the Animal's Health");
+        }
     }
 
-    public void setHealth(String health) {
-        this.health = health;
+    public void setAgeRange(String ageRange) throws InvalidEntryException {
+        if(ageRange.equals(MAX_AGE)){
+            this.ageRange = MAX_AGE;
+        }else if(ageRange.equals(MID_AGE)){
+            this.ageRange = MID_AGE;
+        }else if(ageRange.equals(MIN_AGE)){
+            this.ageRange = MIN_AGE;
+        }
+        else{
+            throw new InvalidEntryException("Please Select The Given Options For the Animal's Age");
+        }
     }
 
-    public void setAgeRange(String ageRange) {
-        this.ageRange = ageRange;
+    public void setName(String name) throws InvalidEntryException {
+        if(name.matches("([a-zA-z]+|[a-zA-Z]+\\s[a-zA-Z]+)*" )){
+            this.name = name;
+        }else{
+            throw new InvalidEntryException("Please Enter Your Name Again");
+        }
+    }
+
+    public void setRangerId(int rangerId) throws InvalidEntryException {
+        if( rangerId > 0 && rangerId<= 100_000 ){
+            this.rangerId = rangerId;
+        }else{
+            throw new InvalidEntryException("Please Enter Your ID Again..Kindly make sure it is correct");
+        }
     }
 
     public String getName() {
@@ -78,9 +115,6 @@ public class Animal {
         return type;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getId() {
         return id;
@@ -89,7 +123,7 @@ public class Animal {
     public void saveAnimal(){
         try(Connection conn = Db.sql2o.open() ){
             String sql = "INSERT INTO animals (name, agerange, health,rangerId,type) VALUES (:name, :age , :health, :rangerId, :type)";
-            int id = (int) conn.createQuery(sql,true)
+            this.id = (int) conn.createQuery(sql,true)
                      .addParameter("name",this.name)
                      .addParameter("age",this.ageRange)
                      .addParameter("health",this.health)
@@ -97,7 +131,6 @@ public class Animal {
                      .addParameter("type",this.type)
                      .executeUpdate()
                     .getKey();
-            setId(id);
         }
     }
 

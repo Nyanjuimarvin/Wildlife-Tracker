@@ -15,20 +15,20 @@ class LocationTest {
     DatabaseRule databaseRule = new DatabaseRule();
 
     Location location;
-    public Location setUpLocation(){
+    public Location setUpLocation() throws Exception {
         return new Location("Heron's Perch",45.03,79.54);
     }
 
     @Test
     @DisplayName("Location Instantiates correctly")
-    public void Location_InstantiatesCorrectly_True(){
+    public void Location_InstantiatesCorrectly_True() throws Exception {
         location = setUpLocation();
         assertTrue(location instanceof Location);
     }
 
     @Test
     @DisplayName("Location Instantiates with properties")
-    public void Location_InstantiatesWithProperties (){
+    public void Location_InstantiatesWithProperties () throws Exception {
         location = setUpLocation();
         assertEquals("Heron's Perch",location.getName());
         BigDecimal lat = new BigDecimal(45.03).setScale(2, RoundingMode.DOWN);
@@ -39,7 +39,7 @@ class LocationTest {
 
     @Test
     @DisplayName("Save saves Location")
-    public void save_SavesAllLocations(){
+    public void save_SavesAllLocations() throws Exception {
         location = setUpLocation();
         Location location1 = new Location("Amanaki",23.43,145.34);
         location.saveLocation();
@@ -51,7 +51,7 @@ class LocationTest {
 
     @Test
     @DisplayName("List contains locations")
-    public void all_ContainsAllLocations(){
+    public void all_ContainsAllLocations() throws Exception {
         location = setUpLocation();
         Location location1 = new Location("Amanaki",23.43,145.34);
         location.saveLocation();
@@ -62,7 +62,7 @@ class LocationTest {
 
     @Test
     @DisplayName("find finds location")
-    public void find_findsLocations(){
+    public void find_findsLocations() throws Exception {
         location = setUpLocation();
         Location location1 = new Location("Amanaki",23.43,145.34);
         location.saveLocation();

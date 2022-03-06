@@ -1,5 +1,6 @@
 package Models;
 
+import Exceptions.InvalidEntryException;
 import org.sql2o.Connection;
 
 import java.math.BigDecimal;
@@ -14,10 +15,15 @@ public class Location {
     private BigDecimal longitude;
     private int id;
 
-    public Location(String name, double latitude, double longitude) {
-        this.name = name;
-        this.latitude = new BigDecimal(latitude).setScale(2,RoundingMode.DOWN);
-        this.longitude = new BigDecimal(longitude).setScale(2,RoundingMode.DOWN);
+    public Location(String name, double latitude, double longitude) throws Exception {
+        try {
+            this.name = name;
+            this.setLatitude(latitude);
+            this.setLongitude(longitude);
+        }catch(InvalidEntryException ex){
+            System.out.println(ex.getMessage());
+        }
+
     }
 
 
@@ -34,6 +40,22 @@ public class Location {
     @Override
     public int hashCode() {
         return Objects.hash(name, latitude, longitude);
+    }
+
+    public void setLatitude(double latitude) throws InvalidEntryException {
+        if( latitude > 0 && latitude < 89.99){
+            this.latitude = new BigDecimal(latitude).setScale(2,RoundingMode.DOWN);
+        }else{
+            throw new InvalidEntryException("Invalid Latitude.Please Enter a valid one");
+        }
+    }
+
+    public void setLongitude(double longitude) throws InvalidEntryException {
+        if(longitude > -179.99 && longitude < 179.99){
+            this.longitude = new BigDecimal(longitude).setScale(2,RoundingMode.DOWN);
+        }else{
+            throw new InvalidEntryException("Invalid Longitude.Please Enter a valid one");
+        }
     }
 
     public String getName() {

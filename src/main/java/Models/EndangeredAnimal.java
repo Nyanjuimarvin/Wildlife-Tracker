@@ -1,29 +1,36 @@
 package Models;
 
-import java.util.List;
+import dao.EndangeredDao;
+import org.sql2o.Connection;
 
-public class EndangeredAnimal extends Animal implements Query{
+import java.util.List;
+import java.util.Objects;
+
+
+public class EndangeredAnimal extends Animal implements EndangeredDao{
 
     public static final String RISK_CATEGORY = "Endangered";
 
-    public EndangeredAnimal(String name, String ageRange, String health) {
-        super(name, ageRange, health);
+    public EndangeredAnimal(String name, String ageRange, String health,int rangerID) {
+        super(name, ageRange, health,rangerID);
         type = RISK_CATEGORY;
     }
 
-    @Override
-    public void save() {
-
+    public static List <EndangeredAnimal> all(){
+        try( Connection conn = Db.sql2o.open() ){
+            return conn.createQuery("SELECT * FROM animals WHERE type = 'Endangered';")
+                    .executeAndFetch(EndangeredAnimal.class);
+        }
     }
 
-    @Override
-    public List<Object> all() {
-        return null;
-    }
-
-    @Override
-    public Object find(int id) {
-        return null;
+    public static EndangeredAnimal find(int id) {
+        try( Connection conn = Db.sql2o.open() ){
+            String sql = "SELECT * FROM animals WHERE id = :id";
+            return conn.createQuery(sql)
+                    .addParameter("id",id)
+                    .throwOnMappingFailure(false)
+                    .executeAndFetchFirst(EndangeredAnimal.class);
+        }
     }
 
     @Override

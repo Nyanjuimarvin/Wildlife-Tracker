@@ -1,3 +1,11 @@
+@font-face {font-family: "RainforestW00-Topline"; src: url("//db.onlinewebfonts.com/t/ae9edeb75035f9e99869b222226820a5.eot"); src: url("//db.onlinewebfonts.com/t/ae9edeb75035f9e99869b222226820a5.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/ae9edeb75035f9e99869b222226820a5.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/ae9edeb75035f9e99869b222226820a5.woff") format("woff"), url("//db.onlinewebfonts.com/t/ae9edeb75035f9e99869b222226820a5.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/ae9edeb75035f9e99869b222226820a5.svg#RainforestW00-Topline") format("svg"); }
+
+*{
+    font-family:"RainforestW00-Topline";
+    font-size:27px;
+    font-weight:bold;
+}
+
 /*Navbar*/
 .navbar-toggler {
   width: 20px;
@@ -87,4 +95,31 @@
     background-size:cover;
     overflow:hidden;
     height:500px;
+}
+
+.rowdescription{
+    margin-bottom:70px;
+}
+
+
+.icologo{
+    height:100px;
+    width:100px;
+}
+
+.row-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+/* vertical spacing between columns */
+
+[class*="col-"] {
+  margin-bottom: 30px;
+}
+
+.content {
+  height: 100%;
+  padding: 20px 20px 10px;
 }

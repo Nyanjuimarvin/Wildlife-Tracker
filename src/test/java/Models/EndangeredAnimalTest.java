@@ -55,6 +55,19 @@ class EndangeredAnimalTest {
         animal1.saveAnimal();
         assertEquals(2,EndangeredAnimal.all().size());
     }
+
+    @Test
+    @DisplayName("All Animals Are In a List")
+    public void save_AllAnimalsAreSaved() throws Exception {
+        animal = setUp();
+        EndangeredAnimal animal1 = new EndangeredAnimal("Monkey","Adult","Healthy",343);
+        animal.saveAnimal();
+        animal1.saveAnimal();
+        assertTrue(EndangeredAnimal.all().contains(animal));
+        assertTrue( EndangeredAnimal.all().contains(animal1));
+
+    }
+
     @Test
     @DisplayName("Objects are equal")
     public void EndangeredAnimals_CheckObjectEquality_True() throws Exception {
@@ -72,5 +85,6 @@ class EndangeredAnimalTest {
         animal1.saveAnimal();
         assertEquals(animal1,EndangeredAnimal.find(animal1.getId()));
     }
+
 
 }

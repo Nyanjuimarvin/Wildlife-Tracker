@@ -1,14 +1,13 @@
 package Models;
 
 import Exceptions.InvalidEntryException;
-import dao.EndangeredDao;
 import org.sql2o.Connection;
 
 import java.util.List;
 
 
 
-public class EndangeredAnimal extends Animal implements EndangeredDao{
+public class EndangeredAnimal extends Animal{
 
     public static final String RISK_CATEGORY = "Endangered";
 
@@ -41,15 +40,5 @@ public class EndangeredAnimal extends Animal implements EndangeredDao{
                     .throwOnMappingFailure(false)
                     .executeAndFetchFirst(EndangeredAnimal.class);
         }
-    }
-
-    @Override
-    public void delete() {
-
-    }
-
-    @Override
-    public void deleteOne(int id) {
-
     }
 }

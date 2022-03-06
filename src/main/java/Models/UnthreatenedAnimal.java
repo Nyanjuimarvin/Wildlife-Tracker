@@ -1,13 +1,12 @@
 package Models;
 
 import Exceptions.InvalidEntryException;
-import dao.UnthreatenedDao;
 import org.sql2o.Connection;
 
 import java.util.List;
 import java.util.Objects;
 
-public class UnthreatenedAnimal extends Animal implements UnthreatenedDao {
+public class UnthreatenedAnimal extends Animal{
 
     public static final String RISK_CATEGORY = "Unthreatened";
 
@@ -48,13 +47,4 @@ public class UnthreatenedAnimal extends Animal implements UnthreatenedDao {
         }
     }
 
-    @Override
-    public void delete() {
-
-    }
-
-    @Override
-    public void deleteOne(int id) {
-
-    }
 }

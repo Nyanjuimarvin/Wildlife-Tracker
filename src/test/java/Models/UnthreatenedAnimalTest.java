@@ -19,6 +19,7 @@ class UnthreatenedAnimalTest {
     @ExtendWith(DatabaseRule.class)
     public DatabaseRule databaseRule = new DatabaseRule();
 
+
     @Test
     @DisplayName("Instantiates Correctly")
     public void UnthreatenedAnimal_InstantiatesCorrectly_True() throws InvalidEntryException {
@@ -54,6 +55,18 @@ class UnthreatenedAnimalTest {
         animal1.saveAnimal();
         assertEquals(2,UnthreatenedAnimal.all().size());
     }
+    @Test
+    @DisplayName("All Animals Are In a List")
+    public void save_AllAnimalsAreSaved() throws Exception {
+        animal = setUp();
+        UnthreatenedAnimal animal1 = new UnthreatenedAnimal("Monkey","Adult","Healthy",343);
+        animal.saveAnimal();
+        animal1.saveAnimal();
+        assertTrue(UnthreatenedAnimal.all().contains(animal));
+        assertTrue( UnthreatenedAnimal.all().contains(animal1));
+
+    }
+
     @Test
     @DisplayName("Objects are equal")
     public void UnthreatenedAnimals_CheckObjectEquality_True() throws InvalidEntryException {

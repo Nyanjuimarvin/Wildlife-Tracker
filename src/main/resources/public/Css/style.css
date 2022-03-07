@@ -93,12 +93,6 @@ a{
 }
 
 /*Navbar-end*/
-.main1{
-    background-image:url(/images/img1.jpg);
-    background-size:cover;
-    overflow:hidden;
-    height:500px;
-}
 
 .aboutimg{
     height:700px;
@@ -178,4 +172,9 @@ a{
 .footer{
     font-size:29px;
     color:#FFFF;
+}
+
+.ranger-form{
+    background-image:url(/images/rangerback.jpg);
+    background-size:cover;
 }

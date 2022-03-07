@@ -39,9 +39,10 @@ public class App {
             String name = request.queryParams("name");
             int badgeId = Integer.parseInt(request.queryParams("badgeId"));
             String contact = request.queryParams("contact");
-                Ranger.all().add(new Ranger(name, contact, badgeId));
-                response.redirect("/");
-                return null;
+            Ranger ranger = new Ranger(name, contact, badgeId);
+            ranger.save();
+            response.redirect("/");
+            return null;
         },new HandlebarsTemplateEngine());
 
         //Post Sightings Form
@@ -54,24 +55,23 @@ public class App {
             double longitude = Double.parseDouble(request.queryParams("longitude"));
 
             Location newLocation = new Location(locationName,latitude,longitude);
-            Location.all().add(newLocation);
+            newLocation.saveLocation();
+            System.out.println(newLocation.getLatitude());
+            System.out.println(newLocation.getLongitude());
 
             String name = request.params("name");
             String age = request.queryParams("age");
             String health = request.queryParams("health");
+            System.out.println(health);
             //Ny
             int rangerId = Integer.parseInt(request.queryParams("rangerId"));
+            System.out.println(rangerId);
             String risk = request.queryParams("risk");
             System.out.println(risk);
-           if(risk.equals("Endangered")){
-               EndangeredAnimal animalE = new EndangeredAnimal(name,age,health,rangerId);
-               EndangeredAnimal.all().add(animalE);
-               Sighting.allSightings().add(new Sighting(animalE.getId(),rangerId, newLocation.getId()));
-           }else{
-               UnthreatenedAnimal animalU = new UnthreatenedAnimal(name,age,health,rangerId);
-               UnthreatenedAnimal.all().add(animalU);
-               Sighting.allSightings().add(new Sighting(animalU.getId(),rangerId,newLocation.getId()));
-           }
+            System.out.println(risk.equals("Endangered"));
+            System.out.println(risk.equals("Unthreatened"));
+           Helper helper = new Helper();
+           helper.saveDifferent(risk,name,rangerId, newLocation.getId(), age,health);
 
            response.redirect("/");
             return null;

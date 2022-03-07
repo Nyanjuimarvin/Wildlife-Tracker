@@ -43,7 +43,7 @@ public class Location {
     }
 
     public void setLatitude(double latitude) throws InvalidEntryException {
-        if( latitude > 0 && latitude < 89.99){
+        if( latitude > 0 && latitude <= 89.99){
             this.latitude = new BigDecimal(latitude).setScale(2,RoundingMode.DOWN);
         }else{
             throw new InvalidEntryException("Invalid Latitude.Please Enter a valid one");
@@ -51,7 +51,7 @@ public class Location {
     }
 
     public void setLongitude(double longitude) throws InvalidEntryException {
-        if(longitude > -179.99 && longitude < 179.99){
+        if(longitude >= -179.99 && longitude <= 179.99){
             this.longitude = new BigDecimal(longitude).setScale(2,RoundingMode.DOWN);
         }else{
             throw new InvalidEntryException("Invalid Longitude.Please Enter a valid one");

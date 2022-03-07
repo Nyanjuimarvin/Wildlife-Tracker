@@ -51,18 +51,18 @@
 
                     <div class="form-group fs-4 mb-4">
                         <label for="" class="fs-4 mb-2">Latitude:</label>
-                        <input type="number" step="0.01" name="latitude" class="form-control" id="latitude">
+                        <input type="number" step="0.01" min = 1.0 max = 89.99 name="latitude" class="form-control" id="latitude" placeholder="1.00 to 89.99">
                     </div>
                     <div class="form-group mb-4">
 
                         <label for="" class="fs-4 mb-2">longitude:</label>
-                        <input type="number" step="0.01" class="form-control" id="longitude" name="longitude">
+                        <input type="number" step="0.01" min = -179.99 max = 179.99 class="form-control" id="longitude" name="longitude" placeholder="-179.99 to 179.99">
                     </div>
 
                     <div class="form-group mb-4">
 
                         <label for="health" class="fs-4 mb-2">Record Owner:</label>
-                        <select name="risk" class="form-control" id="risk">
+                        <select name="rangerId" class="form-control" id="rangerId">
                             <option disabled selected>Select Record Owner</option>
                             {{#each rangers}}
                                 <option  value="{{id}}">{{name}}</option>

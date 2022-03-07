@@ -18,14 +18,6 @@ public class EndangeredAnimal extends Animal{
     }
 
 
-    public boolean validHealth(){
-        return  health.equals(MAX_HEALTH)||
-                health.equals(MID_HEALTH)||
-                health.equals(MIN_HEALTH);
-    }
-
-
-
     public static List <EndangeredAnimal> all(){
         try( Connection conn = Db.sql2o.open() ){
             return conn.createQuery("SELECT * FROM animals WHERE type = 'Endangered';")

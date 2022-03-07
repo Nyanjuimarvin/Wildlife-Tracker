@@ -1,5 +1,6 @@
 package Models;
 
+import Exceptions.InvalidEntryException;
 import org.joda.time.DateTime;
 import org.sql2o.Connection;
 

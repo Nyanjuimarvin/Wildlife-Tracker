@@ -1,5 +1,6 @@
 import static spark.Spark.*;
 
+import Exceptions.InvalidRangerDetails;
 import Models.*;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -21,12 +22,14 @@ public class App {
         //Get Ranger Form
         get("/rangers/new",(request, response) -> {
             Map <String,Object> model = new HashMap<>();
+            model.put("rangers",Ranger.all());
             return new ModelAndView(model,"ranger-form.hbs");
         },new HandlebarsTemplateEngine());
 
         //Get Sighting Form
-        get("/sighting/new",(request, response) -> {
+        get("/sightings/new",(request, response) -> {
             Map <String,Object> model = new HashMap<>();
+            model.put("rangers",Ranger.all());
             return new ModelAndView(model,"sighting-form.hbs");
         },new HandlebarsTemplateEngine());
 
@@ -36,9 +39,9 @@ public class App {
             String name = request.queryParams("name");
             int badgeId = Integer.parseInt(request.queryParams("badgeId"));
             String contact = request.queryParams("contact");
-            Ranger.all().add(new Ranger(name,contact,badgeId));
-            response.redirect("/");
-            return null;
+                Ranger.all().add(new Ranger(name, contact, badgeId));
+                response.redirect("/");
+                return null;
         },new HandlebarsTemplateEngine());
 
         //Post Sightings Form
@@ -59,6 +62,7 @@ public class App {
             //Ny
             int rangerId = Integer.parseInt(request.queryParams("rangerId"));
             String risk = request.queryParams("risk");
+            System.out.println(risk);
            if(risk.equals("Endangered")){
                EndangeredAnimal animalE = new EndangeredAnimal(name,age,health,rangerId);
                EndangeredAnimal.all().add(animalE);
@@ -69,18 +73,24 @@ public class App {
                Sighting.allSightings().add(new Sighting(animalU.getId(),rangerId,newLocation.getId()));
            }
 
+           response.redirect("/");
             return null;
         },new HandlebarsTemplateEngine());
 
         //Get All Sightings
         get("/sightings/all",(request, response) -> {
+            Map <String,Object> model = new HashMap<>();
+            model.put("sight",Sighting.allSightings());
+            model.put("rangers",Ranger.all());
+
+            return new ModelAndView(model,"sightings.hbs");
 
         },new HandlebarsTemplateEngine());
 
-        //Get Recent Sightings
-        get("/sightings/recent",(request, response) -> {
-
-        },new HandlebarsTemplateEngine());
+//        //Get Recent Sightings
+//        get("/sightings/recent",(request, response) -> {
+//
+//        },new HandlebarsTemplateEngine());
 
         //Show Specific Sighting
 

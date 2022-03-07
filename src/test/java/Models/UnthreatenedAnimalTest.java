@@ -86,4 +86,27 @@ class UnthreatenedAnimalTest {
     }
 
 
+    @Test
+    @DisplayName("Delete All Animals")
+    public void delete_DeletesAllAnimals() throws Exception{
+        animal = setUp();
+        animal.saveAnimal();
+        UnthreatenedAnimal animal1 = new UnthreatenedAnimal("Panda","Young","Okay",3433);
+        animal1.saveAnimal();
+        UnthreatenedAnimal.deleteAll();
+        assertEquals(0,UnthreatenedAnimal.all().size());
+
+    }
+
+    @Test
+    @DisplayName("Delete Animal At Given Id")
+    public void deleteById_DeletesAnimal() throws Exception{
+        animal = setUp();
+        animal.saveAnimal();
+        UnthreatenedAnimal animal1 = new UnthreatenedAnimal("Panda","Young","Okay",3433);
+        animal1.saveAnimal();
+        UnthreatenedAnimal.deletebyId(animal1.getId());
+        assertFalse(UnthreatenedAnimal.all().contains(animal1));
+
+    }
 }

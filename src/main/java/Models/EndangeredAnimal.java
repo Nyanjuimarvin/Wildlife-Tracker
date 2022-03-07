@@ -3,6 +3,7 @@ package Models;
 import Exceptions.InvalidEntryException;
 import org.sql2o.Connection;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -53,9 +54,10 @@ public class EndangeredAnimal extends Animal{
     //Nt
     public static void deletebyId(int id){
         try( Connection conn = Db.sql2o.open() ){
-            String sql = "DELETE FROM animals where id = :id type = 'Endangered'";
+            String sql = "DELETE FROM animals where id = :id";
             conn.createQuery(sql).addParameter("id",id).executeUpdate();
         }
     }
+
 
 }

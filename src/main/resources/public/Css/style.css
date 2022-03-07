@@ -1,9 +1,12 @@
 @font-face {font-family: "RainforestW00-Topline"; src: url("//db.onlinewebfonts.com/t/ae9edeb75035f9e99869b222226820a5.eot"); src: url("//db.onlinewebfonts.com/t/ae9edeb75035f9e99869b222226820a5.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/ae9edeb75035f9e99869b222226820a5.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/ae9edeb75035f9e99869b222226820a5.woff") format("woff"), url("//db.onlinewebfonts.com/t/ae9edeb75035f9e99869b222226820a5.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/ae9edeb75035f9e99869b222226820a5.svg#RainforestW00-Topline") format("svg"); }
 
-*{
+body{
     font-family:"RainforestW00-Topline";
-    font-size:27px;
     font-weight:bold;
+}
+
+a{
+    font-size:26px;
 }
 
 /*Navbar*/
@@ -97,14 +100,48 @@
     height:500px;
 }
 
+.aboutimg{
+    height:700px;
+}
 .rowdescription{
     margin-bottom:70px;
+}
+
+.heading1{
+    color:#8BB85A;
+    font-size:48px;
+    font-weight:bolder;
+}
+
+.heading2{
+    color:#8BB85A;
+    font-size:60px;
+    font-weight:bolder;
+}
+
+.card-title{
+    color:#D11F0A;
+    font-size:33px;
+    font-weight:bold;
+}
+
+.card-text{
+    font-size:27px;
+}
+
+.icohead{
+    height:50px;
+    width:50px;
 }
 
 
 .icologo{
     height:100px;
     width:100px;
+}
+
+.summary{
+    font-size:30px;
 }
 
 .row-flex {
@@ -122,4 +159,23 @@
 .content {
   height: 100%;
   padding: 20px 20px 10px;
+}
+
+.c-body:hover{
+    box-shadow: 0 10px 50px rgb(0 0 0 / 0.2);
+}
+
+.message{
+    font-size:32px;
+    font-weight:bolder;
+}
+
+.formtitle{
+    font-size:32px;
+    font-weight:bolder;
+}
+
+.footer{
+    font-size:29px;
+    color:#FFFF;
 }

@@ -5,6 +5,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class EndangeredAnimalTest {
@@ -84,6 +87,27 @@ class EndangeredAnimalTest {
         EndangeredAnimal animal1 = new EndangeredAnimal("Red Panda","Young","Okay",3433);
         animal1.saveAnimal();
         assertEquals(animal1,EndangeredAnimal.find(animal1.getId()));
+    }
+    @Test
+    @DisplayName("Delete all")
+    public void deleteAll_DeletesAllAnimals_True() throws Exception{
+        animal = setUp();
+        animal.saveAnimal();
+        EndangeredAnimal animal1 = new EndangeredAnimal("Red Panda","Young","Okay",3433);
+        animal1.saveAnimal();
+        EndangeredAnimal.deleteAll();
+        assertEquals(0,EndangeredAnimal.all().size());
+    }
+
+    @Test
+    @DisplayName("Delete By Id")
+    public void deleteById_DeletesAnimal_True() throws Exception{
+        animal = setUp();
+        animal.saveAnimal();
+        EndangeredAnimal animal1 = new EndangeredAnimal("Red Panda","Young","Okay",3433);
+        animal1.saveAnimal();
+        EndangeredAnimal.deletebyId(animal1.getId());
+        assertFalse(EndangeredAnimal.all().contains(animal1));
     }
 
 

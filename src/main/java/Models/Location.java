@@ -101,5 +101,8 @@ public class Location {
         }
     }
 
+    public String readableLocation(){
+        return String.format("%s Lat: %.2f Long: %.2f",getName(),getLatitude(),getLongitude());
+    }
 
 }

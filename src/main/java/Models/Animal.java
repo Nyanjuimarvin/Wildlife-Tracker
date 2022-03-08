@@ -4,6 +4,8 @@ package Models;
 import Exceptions.InvalidEntryException;
 import org.sql2o.Connection;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.util.Objects;
 
 public class Animal {
@@ -11,6 +13,9 @@ public class Animal {
     public String health;
     public String ageRange;
     public int rangerId;
+    public Timestamp timeOfRecord;
+    public String placeOfRecord;
+    public int locationId;
 
     private int id;
     public String type;
@@ -132,5 +137,37 @@ public class Animal {
         }
     }
 
+    //Time of sighting
+    public String timeSighted(){
+        try(Connection conn = Db.sql2o.open() ) {
+            String sql = "SELECT timesighted FROM sightings WHERE animalid = :id";
+            this.timeOfRecord = conn.createQuery(sql)
+                    .addParameter("id",this.id)
+                    .executeAndFetchFirst(Timestamp.class);
+            return DateFormat.getDateTimeInstance().format(timeOfRecord);
+        }
+    }
 
+    //Ranger
+    public Ranger recordRanger(){
+        try(Connection conn = Db.sql2o.open()){
+            return conn.createQuery("SELECT * FROM rangers WHERE id = :id")
+                    .addParameter("id",this.rangerId)
+                    .executeAndFetchFirst(Ranger.class);
+        }
+    }
+
+    //Location
+    public Location locationSighted(){
+        try(Connection conn = Db.sql2o.open()){
+            String sql = "SELECT locationid FROM sightings WHERE animalid = :id";
+            this.locationId = conn.createQuery(sql)
+                    .addParameter("id",this.id)
+                    .executeAndFetchFirst(Integer.class);
+
+            return conn.createQuery("SELECT * FROM locations WHERE id = :id")
+                    .addParameter("id",this.locationId)
+                    .executeAndFetchFirst(Location.class);
+        }
+    }
 }

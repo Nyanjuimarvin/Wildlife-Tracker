@@ -6,7 +6,6 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 
 public class App {
@@ -98,6 +97,9 @@ public class App {
            Sighting sighting = new Sighting(animal.getId(),rangerId,newLocation.getId());
            sighting.saveSighting();
 
+            System.out.println(animal.timeSighted());
+            System.out.println(animal.recordRanger().getContact());
+
            response.redirect("/");
            return null;
         },new HandlebarsTemplateEngine());
@@ -105,8 +107,8 @@ public class App {
         //Get All Sightings
         get("/sightings/all",(request, response) -> {
             Map <String,Object> model = new HashMap<>();
-            model.put("sight",Sighting.allSightings());
-            model.put("rangers",Ranger.all());
+            model.put("Eanimals",EndangeredAnimal.all());
+            model.put("Uanimals",UnthreatenedAnimal.all());
 
             return new ModelAndView(model,"sightings.hbs");
 

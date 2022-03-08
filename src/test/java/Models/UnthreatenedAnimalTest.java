@@ -6,6 +6,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class UnthreatenedAnimalTest {
@@ -108,5 +112,35 @@ class UnthreatenedAnimalTest {
         UnthreatenedAnimal.deletebyId(animal1.getId());
         assertFalse(UnthreatenedAnimal.all().contains(animal1));
 
+    }
+
+    @Test
+    @DisplayName("Returns Time")
+    public void timeSighted_ReturnsTime() throws Exception{
+        animal = setUp();
+        animal.saveAnimal();
+        Location location = new Location("Whiterun",45.43,123.54);
+        location.saveLocation();
+        Ranger ranger = new Ranger("Deadwood","123-312-212134",58533);
+        ranger.save();
+        Sighting sighting = new Sighting(animal.getId(),ranger.getId(),location.getId());
+        sighting.saveSighting();
+        Timestamp rightNow = new Timestamp(new Date().getTime());
+        String humanNow = DateFormat.getDateTimeInstance().format(rightNow);
+        assertEquals(humanNow,animal.timeSighted());
+    }
+
+    @Test
+    @DisplayName("Returns Location")
+    public void placeSighted_ReturnsLocation() throws Exception{
+        animal = setUp();
+        animal.saveAnimal();
+        Location location = new Location("Whiterun",45.43,123.54);
+        location.saveLocation();
+        Ranger ranger = new Ranger("Deadwood","123-312-212134",58533);
+        ranger.save();
+        Sighting sighting = new Sighting(animal.getId(),ranger.getId(),location.getId());
+        sighting.saveSighting();
+        assertEquals(location,animal.locationSighted());
     }
 }

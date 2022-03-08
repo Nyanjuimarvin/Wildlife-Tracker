@@ -70,6 +70,14 @@ class LocationTest {
        assertEquals(location1,Location.find(location1.getId()));
     }
 
+    @Test
+    @DisplayName("Return Readable Location")
+    public void readableLocation_ReturnsFormattedLocation() throws Exception {
+        location = setUpLocation();
+        System.out.println(location.readableLocation());
+        assertEquals("Heron's Perch Lat: 45.03 Long: 79.54",location.readableLocation());
+
+    }
 
 
 }

@@ -3,7 +3,6 @@ package Models;
 import Exceptions.InvalidEntryException;
 import org.sql2o.Connection;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 

@@ -1,6 +1,5 @@
 import static spark.Spark.*;
 
-import Exceptions.InvalidRangerDetails;
 import Models.*;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -11,11 +10,12 @@ import java.util.Objects;
 
 
 public class App {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception{
         staticFileLocation("/public");
 
         get("/",(request, response) -> {
             Map <String, Object> model = new HashMap<>();
+            model.put("ranger",Ranger.all());
             return new ModelAndView(model,"index.hbs");
         },new HandlebarsTemplateEngine());
 
@@ -26,11 +26,18 @@ public class App {
             return new ModelAndView(model,"ranger-form.hbs");
         },new HandlebarsTemplateEngine());
 
-        //Get Sighting Form
-        get("/sightings/new",(request, response) -> {
+        //Get Normal Sighting Form
+        get("/sightings/normal",(request, response) -> {
             Map <String,Object> model = new HashMap<>();
             model.put("rangers",Ranger.all());
-            return new ModelAndView(model,"sighting-form.hbs");
+            return new ModelAndView(model,"unthreatened-form.hbs");
+        },new HandlebarsTemplateEngine());
+
+        //Get Endangered Sighting Form
+        get("/sightings/endangered",(request, response) -> {
+            Map <String,Object> model = new HashMap<>();
+            model.put("rangers",Ranger.all());
+            return new ModelAndView(model,"endangered-form.hbs");
         },new HandlebarsTemplateEngine());
 
         //Post Ranger Form
@@ -45,10 +52,9 @@ public class App {
             return null;
         },new HandlebarsTemplateEngine());
 
-        //Post Sightings Form
-        post("/sightings",(request, response) -> {
+        //Post Normal Sighting Form
+        post("/unthreatened",(request, response) ->{
             Map <String,Object> model = new HashMap<>();
-
 
             String locationName = request.queryParams("locationname");
             double latitude = Double.parseDouble(request.queryParams("latitude"));
@@ -56,25 +62,44 @@ public class App {
 
             Location newLocation = new Location(locationName,latitude,longitude);
             newLocation.saveLocation();
-            System.out.println(newLocation.getLatitude());
-            System.out.println(newLocation.getLongitude());
 
-            String name = request.params("name");
+            String name = request.queryParams("Name");
             String age = request.queryParams("age");
             String health = request.queryParams("health");
-            System.out.println(health);
             //Ny
             int rangerId = Integer.parseInt(request.queryParams("rangerId"));
-            System.out.println(rangerId);
-            String risk = request.queryParams("risk");
-            System.out.println(risk);
-            System.out.println(risk.equals("Endangered"));
-            System.out.println(risk.equals("Unthreatened"));
-           Helper helper = new Helper();
-           helper.saveDifferent(risk,name,rangerId, newLocation.getId(), age,health);
+            UnthreatenedAnimal animal = new UnthreatenedAnimal(name,age,health,rangerId);
+            animal.saveAnimal();
+            Sighting sighting = new Sighting(animal.getId(),rangerId,newLocation.getId());
+            sighting.saveSighting();
+
+            response.redirect("/");
+            return null;
+        },new HandlebarsTemplateEngine());
+
+        //Post Endangered Sightings Form
+        post("/endangered",(request, response) ->{
+            Map <String,Object> model = new HashMap<>();
+
+            String locationName = request.queryParams("locationname");
+            double latitude = Double.parseDouble(request.queryParams("latitude"));
+            double longitude = Double.parseDouble(request.queryParams("longitude"));
+
+            Location newLocation = new Location(locationName,latitude,longitude);
+            newLocation.saveLocation();
+
+            String name = request.queryParams("Name");
+            String age = request.queryParams("age");
+            String health = request.queryParams("health");
+            //Ny
+            int rangerId = Integer.parseInt(request.queryParams("rangerId"));
+           EndangeredAnimal animal = new EndangeredAnimal(name,age,health,rangerId);
+           animal.saveAnimal();
+           Sighting sighting = new Sighting(animal.getId(),rangerId,newLocation.getId());
+           sighting.saveSighting();
 
            response.redirect("/");
-            return null;
+           return null;
         },new HandlebarsTemplateEngine());
 
         //Get All Sightings

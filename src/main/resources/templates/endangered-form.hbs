@@ -1,13 +1,17 @@
 {{#partial "content"}}
-<div class="container-fluid p-5">
-                <form action="/sightings" method="post">
-                    <div class="row">
-                        <div class="col-md-5 p-5 rounded bg-success bg-opacity-50">
-                            <h3 class="text-center formtitle">Animal</h3>
+    <div class="container-fluid p-5">
+    {{#if rangers}}
+        <form action="/endangered" method="post">
+            <div class="row">
+                <div class="col-md-5 p-5 rounded bg-success bg-opacity-50">
+
+                    <h3 class="text-center formtitle">Animal</h3>
+
                     <div class="form-group mb-4">
                         <label for="name" class="fs-4 mb-2">Animal Name:</label>
-                        <input type="text" class="form-control" id="name" name="newname" value="{{hero.name}}">
+                        <input type="text" class="form-control" id="Name" name="Name">
                     </div>
+
                     <div class="form-group mb-4">
                         <label for="age" class="fs-4 mb-2">Animal Age:</label>
                         <select name="age" class="form-control" id="age">
@@ -22,9 +26,7 @@
 
                         <label for="health" class="fs-4 mb-2">Risk Factor:</label>
                         <select name="risk" class="form-control" id="risk">
-                            <option disabled selected>Select AnimaL Risk Factor</option>
                             <option  value="Endangered">Endangered</option>
-                            <option value="Unthreatened">Unthreatened</option>
                         </select>
                     </div>
 
@@ -39,10 +41,10 @@
                             <option value="Ill">Ill</option>
                         </select>
                     </div>
-                        </div>
-                        <div class="col-md-2"></div>
-                        <div class="col-md-5 p-5 rounded bg-success bg-opacity-50">
-                            <h3 class="text-center formtitle">Location</h3>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-5 p-5 rounded bg-success bg-opacity-50">
+                    <h3 class="text-center formtitle">Location</h3>
                     <div class="form-group mb-4">
 
                         <label for="location" class="fs-4 mb-2">Location Name:</label>
@@ -70,10 +72,22 @@
                         </select>
                     </div>
 
-                    </div>
-                    </div>
-                    <button class="btn btn-success fs-3 fw-bolder d-block mx-auto" type="submit">Add Sighting</button>
-                </form>
-</div>
+                </div>
+            </div>
+            <button class="btn btn-success fs-3 fw-bolder d-block mx-auto" type="submit">Add Sighting</button>
+        </form>
+
+{{else}}
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 bg-success bg-opacity-50">
+                <h3>Hello There</h3>
+                <p>Make Sure You Register As A ranger before making a recording. Kindly follow the link below</p>
+                <a class="text-decoration-none" href="/rangers/new"></a>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+{{/if}}
+    </div>
 {{/partial}}
 {{>layout.hbs}}

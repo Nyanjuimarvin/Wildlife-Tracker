@@ -54,36 +54,42 @@ public class Animal {
 
 
     public void setHealth(String health) throws InvalidEntryException {
-        if(health.equals(MAX_HEALTH)){
-            this.health = MAX_HEALTH;
-        }else if(health.equals(MID_HEALTH)){
-            this.health = MID_HEALTH;
-        }else if(health.equals(MIN_HEALTH)){
-            this.health = MIN_HEALTH;
-        }
-        else{
-            throw new InvalidEntryException("Please Select The Given Options for the Animal's Health");
+        switch (health) {
+            case MAX_HEALTH:
+                this.health = MAX_HEALTH;
+                break;
+            case MID_HEALTH:
+                this.health = MID_HEALTH;
+                break;
+            case MIN_HEALTH:
+                this.health = MIN_HEALTH;
+                break;
+            default:
+                throw new InvalidEntryException("Please Select The Given Options for the Animal's Health");
         }
     }
 
     public void setAgeRange(String ageRange) throws InvalidEntryException {
-        if(ageRange.equals(MAX_AGE)){
-            this.ageRange = MAX_AGE;
-        }else if(ageRange.equals(MID_AGE)){
-            this.ageRange = MID_AGE;
-        }else if(ageRange.equals(MIN_AGE)){
-            this.ageRange = MIN_AGE;
-        }
-        else{
-            throw new InvalidEntryException("Please Select The Given Options For the Animal's Age");
+        switch (ageRange) {
+            case MAX_AGE:
+                this.ageRange = MAX_AGE;
+                break;
+            case MID_AGE:
+                this.ageRange = MID_AGE;
+                break;
+            case MIN_AGE:
+                this.ageRange = MIN_AGE;
+                break;
+            default:
+                throw new InvalidEntryException("Please Select The Given Options For the Animal's Age");
         }
     }
 
     public void setName(String name) throws InvalidEntryException {
-        if(name.matches("([a-zA-z]+|[a-zA-Z]+\\s[a-zA-Z]+)*" ) ){
+        if( !(name.isEmpty()) && name.matches("([a-zA-z]+|[a-zA-Z]+\\s[a-zA-Z]+)*" ) ){
             this.name = name;
         }else{
-            throw new InvalidEntryException("Please Enter Your Name Again");
+            throw new InvalidEntryException("Please Enter Animal Name Again");
         }
     }
 
@@ -125,5 +131,6 @@ public class Animal {
                     .getKey();
         }
     }
+
 
 }

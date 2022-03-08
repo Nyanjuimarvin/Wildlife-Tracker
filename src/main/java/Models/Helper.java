@@ -1,5 +1,7 @@
 package Models;
 
+import Exceptions.InvalidEntryException;
+
 public class Helper {
 
     //Helper Class
@@ -7,7 +9,7 @@ public class Helper {
 
     }
 
-    public void saveDifferent(String type,String name,int rangerId,int locationId,String age,String health) throws Exception {
+    public void saveDifferent(String type,String name,int rangerId,int locationId,String age,String health) throws InvalidEntryException {
         if(type.equals("Endangered")){
             EndangeredAnimal animal = new EndangeredAnimal(name,age,health,rangerId);
             animal.saveAnimal();

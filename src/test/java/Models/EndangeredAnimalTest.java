@@ -140,4 +140,23 @@ class EndangeredAnimalTest {
         sighting.saveSighting();
         assertEquals(location,animal.locationSighted());
     }
+
+    @Test
+    @DisplayName("Extradetails sets location and time")
+    public void extraDetails_setsDetails() throws Exception{
+        animal = setUp();
+        animal.saveAnimal();
+        Location location = new Location("Whiterun",45.43,123.54);
+        location.saveLocation();
+        Ranger ranger = new Ranger("Deadwood","123-312-212134",58533);
+        ranger.save();
+        Sighting sighting = new Sighting(animal.getId(),ranger.getId(),location.getId());
+        sighting.saveSighting();
+        animal.extraDetails();
+        System.out.println(animal.timeRecorded);
+        System.out.println(animal.location);
+        assertEquals(animal.location,animal.locationSighted().readableLocation());
+        assertEquals(animal.timeRecorded,animal.timeSighted());
+    }
+
 }

@@ -6,23 +6,23 @@
                         <div class="col-md-5 p-5 rounded bg-success bg-opacity-50">
                             <h3 class="text-center formtitle">Animal</h3>
                     <div class="form-group mb-4">
-                        <label for="name" class="fs-4 mb-2">Animal Name:</label>
-                        <input type="text" class="form-control" id="Name" name="Name">
+                        <label for="name" class="fs-4 mb-2 text-white">Animal Name:</label>
+                        <input type="text" class="form-control fs-5 fw-bold" id="Name" name="Name">
                     </div>
                     <div class="form-group mb-4">
-                        <label for="age" class="fs-4 mb-2">Animal Age:</label>
-                        <select name="age" class="form-control" id="age">
-                            <option disabled selected>Select Animal Age Range</option>
-                            <option value="Newborn">Newborn</option>
-                            <option  value="Young">Young</option>
-                            <option value="Adult">Adult</option>
+                        <label for="age" class="fs-4 mb-2 text-white">Animal Age:</label>
+                        <select name="age" class="form-control fs-5 fw-bold" id="age">
+                            <option class="fw-bold" disabled selected>Select Animal Age Range</option>
+                            <option class="fw-bold" value="Newborn">Newborn</option>
+                            <option class="fw-bold"  value="Young">Young</option>
+                            <option class="fw-bold" value="Adult">Adult</option>
                         </select>
                     </div>
 
                     <div class="form-group mb-4">
 
-                        <label for="health" class="fs-4 mb-2">Risk Factor:</label>
-                        <select name="risk" class="form-control" id="risk">
+                        <label for="health" class="fs-4 mb-2 text-white">Risk Factor:</label>
+                        <select name="risk" class="form-control fs-5 fw-bold" id="risk">
                             <option value="Unthreatened">Unthreatened</option>
                         </select>
                     </div>
@@ -30,12 +30,12 @@
 
                     <div class="form-group mb-4">
 
-                        <label for="health" class="fs-4 mb-2">Health state:</label>
-                        <select name="health" class="form-control" id="health">
-                            <option disabled selected>Select Animal Health</option>
-                            <option  value="Healthy">Healthy</option>
-                            <option value="Okay">Okay</option>
-                            <option value="Ill">Ill</option>
+                        <label for="health" class="fs-4 mb-2 text-white">Health state:</label>
+                        <select name="health" class="form-control fs-5 fw-bold" id="health">
+                            <option class="fw-bold" disabled selected>Select Animal Health</option>
+                            <option class="fw-bold"  value="Healthy">Healthy</option>
+                            <option class="fw-bold" value="Okay">Okay</option>
+                            <option class="fw-bold" value="Ill">Ill</option>
                         </select>
                     </div>
                         </div>
@@ -44,27 +44,27 @@
                             <h3 class="text-center formtitle">Location</h3>
                     <div class="form-group mb-4">
 
-                        <label for="location" class="fs-4 mb-2">Location Name:</label>
+                        <label for="location" class="fs-4 mb-2 text-white">Location Name:</label>
                         <input type="text" class="form-control" id="locationname" name="locationname">
                     </div>
 
                     <div class="form-group fs-4 mb-4">
-                        <label for="" class="fs-4 mb-2">Latitude:</label>
-                        <input type="number" step="0.01" min = 1.0 max = 89.99 name="latitude" class="form-control" id="latitude" placeholder="1.00 to 89.99">
+                        <label for="" class="fs-4 mb-2 text-white">Latitude:</label>
+                        <input type="number"  step="0.01" min = 1.0 max = 89.99 name="latitude" class="form-control fs-5 fw-bold" id="latitude" placeholder="1.00 to 89.99">
                     </div>
                     <div class="form-group mb-4">
 
-                        <label for="" class="fs-4 mb-2">longitude:</label>
-                        <input type="number" step="0.01" min = -179.99 max = 179.99 class="form-control" id="longitude" name="longitude" placeholder="-179.99 to 179.99">
+                        <label for="" class="fs-4 mb-2 text-white">longitude:</label>
+                        <input type="number" step="0.01" min = -179.99 max = 179.99 class="form-control fs-5 fw-bold" id="longitude" name="longitude" placeholder="-179.99 to 179.99">
                     </div>
 
                     <div class="form-group mb-4">
 
-                        <label for="health" class="fs-4 mb-2">Record Owner:</label>
-                        <select name="rangerId" class="form-control" id="rangerId">
+                        <label for="health " class="fs-4 mb-2 text-white">Record Owner:</label>
+                        <select name="rangerId" class="form-control fs-5 fw-bold" id="rangerId">
                             <option disabled selected>Select Record Owner</option>
                             {{#each rangers}}
-                                <option  value="{{id}}">{{name}}</option>
+                                <option class="fs-5 fw-bold" value="{{id}}">{{name}}</option>
                             {{/each}}
                         </select>
                     </div>

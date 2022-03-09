@@ -6,6 +6,8 @@ import org.sql2o.Connection;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Animal {
@@ -14,8 +16,10 @@ public class Animal {
     public String ageRange;
     public int rangerId;
     public Timestamp timeOfRecord;
+    public String timeRecorded;
     public String placeOfRecord;
     public int locationId;
+    public String location;
 
     private int id;
     public String type;
@@ -27,6 +31,7 @@ public class Animal {
     public static final String MAX_AGE ="Adult";
     public static final String MID_AGE = "Young";
     public static final String MIN_AGE = "Newborn";
+
 
     public Animal(String name, String ageRange, String health,int rangerId) throws InvalidEntryException {
         try{
@@ -98,6 +103,19 @@ public class Animal {
         }
     }
 
+
+    public void setTimeRecorded() {
+        this.timeRecorded = timeSighted();
+    }
+
+    public void setPlaceOfRecord(String placeOfRecord) {
+        this.placeOfRecord = placeOfRecord;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     public String getName() {
         return name;
     }
@@ -125,13 +143,14 @@ public class Animal {
 
     public void saveAnimal(){
         try(Connection conn = Db.sql2o.open() ){
-            String sql = "INSERT INTO animals (name, agerange, health,rangerId,type) VALUES (:name, :age , :health, :rangerId, :type)";
+            String sql = "INSERT INTO animals (name, agerange, health,rangerId,type,location,timesighted) VALUES (:name, :age , :health, :rangerId, :type, :location,now())";
             this.id = (int) conn.createQuery(sql,true)
                      .addParameter("name",this.name)
                      .addParameter("age",this.ageRange)
                      .addParameter("health",this.health)
                      .addParameter("rangerId",this.rangerId)
                      .addParameter("type",this.type)
+                    .addParameter("location",this.location)
                      .executeUpdate()
                     .getKey();
         }
@@ -170,4 +189,12 @@ public class Animal {
                     .executeAndFetchFirst(Location.class);
         }
     }
+
+
+    public void extraDetails() {
+        this.location = this.locationSighted().readableLocation();
+        this.timeRecorded = this.timeSighted();
+
+    }
+
 }

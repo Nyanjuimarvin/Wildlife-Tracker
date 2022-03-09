@@ -4,13 +4,16 @@ import Models.*;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
 public class App {
     public static void main(String[] args) throws Exception{
         staticFileLocation("/public");
+
 
         get("/",(request, response) -> {
             Map <String, Object> model = new HashMap<>();
@@ -93,31 +96,62 @@ public class App {
             //Ny
             int rangerId = Integer.parseInt(request.queryParams("rangerId"));
            EndangeredAnimal animal = new EndangeredAnimal(name,age,health,rangerId);
+           animal.setLocation(newLocation.readableLocation());
            animal.saveAnimal();
+
            Sighting sighting = new Sighting(animal.getId(),rangerId,newLocation.getId());
            sighting.saveSighting();
-
-            System.out.println(animal.timeSighted());
-            System.out.println(animal.recordRanger().getContact());
-
+           animal.extraDetails();
            response.redirect("/");
            return null;
         },new HandlebarsTemplateEngine());
 
-        //Get All Sightings
-        get("/sightings/all",(request, response) -> {
+        //Get All Normal Sightings
+        get("/unthreatenedsightings/all",(request, response) -> {
             Map <String,Object> model = new HashMap<>();
-            model.put("Eanimals",EndangeredAnimal.all());
-            model.put("Uanimals",UnthreatenedAnimal.all());
-
-            return new ModelAndView(model,"sightings.hbs");
-
+            model.put("nAnimals",UnthreatenedAnimal.all());
+            return new ModelAndView(model,"normalsightings.hbs");
         },new HandlebarsTemplateEngine());
 
-//        //Get Recent Sightings
-//        get("/sightings/recent",(request, response) -> {
-//
-//        },new HandlebarsTemplateEngine());
+        //Get All Endangered Sightings
+        get("/endangeredsightings/all",(request, response) -> {
+            Map <String,Object> model = new HashMap<>();
+            model.put("eAnimals",EndangeredAnimal.all());
+            return new ModelAndView(model,"endangeredSighting.hbs");
+        },new HandlebarsTemplateEngine());
+
+
+        //Rangers
+        get("/rangers/:id",(request, response) -> {
+            Map <String,Object> model = new HashMap<>();
+            int rangerId = Integer.parseInt(request.params("id"));
+            model.put("ranger",Ranger.find(rangerId));
+            return new ModelAndView(model,"ranger.hbs");
+        },new HandlebarsTemplateEngine());
+
+
+        //Ranger Sightings
+        get("/rangers/:id/sightings",(request, response) -> {
+            Map <String,Object> model = new HashMap<>();
+            int id = Integer.parseInt(request.params("id")) ;
+            model.put("sight",Ranger.rangerSightings(id));
+            System.out.println(Ranger.rangerSightings(id).size());
+            return new ModelAndView(model,"exec.hbs");
+        },new HandlebarsTemplateEngine());
+
+        get("/sightings/all",(request, response) -> {
+            Map <String,Object> model = new HashMap<>();
+            model.put("sight",Sighting.allSightings());
+            System.out.println(Sighting.allSightings().size());
+            return new ModelAndView(model,"sight.hbs");
+            },new HandlebarsTemplateEngine());
+
+
+        //Location at id
+
+        //Animal at id
+
+        //Location at id
 
         //Show Specific Sighting
 
@@ -129,5 +163,6 @@ public class App {
         //Show Specific Animal
 
         //Show Ranger Details
+
     }
 }

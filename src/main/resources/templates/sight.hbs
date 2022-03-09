@@ -1,0 +1,23 @@
+{{#partial "content"}}
+
+
+    <div class="container">
+
+        <div class="row row-cols-1 row-cols-md-3 g-3">
+            {{#each sight}}
+                <div class="col">
+
+                    <div class="card h-100">
+                        <h6 class="sighthead"> Sighted By Ranger No: {{rangerId}} <a href="/rangers/{{rangerId}}">View Details</a></h6>
+                        <p class="sighttext"> Sighted At Location: {{locationId}} <a href="/locations/{{locationId}}">View More</a></p>
+                        <p class="sighttext">Animal Sighted: {{animalId}} <a href="/animal/{{animalId}}">View</a></p>
+                        <p class="sighttext">Time of Sighting: {{timesighted}}</p>
+
+                    </div>
+
+                </div>
+            {{/each}}
+        </div>
+    </div>
+{{/partial}}
+{{>layout.hbs}}

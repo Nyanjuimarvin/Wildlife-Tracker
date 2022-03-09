@@ -117,12 +117,12 @@ public class Ranger {
     }
 
     //Return all animals ranger has sighted
-    public List <Object> rangerSightings(){
+    public static List <Object> rangerSightings(int id){
         List <Object> allSightings = new ArrayList<>();
         try(Connection conn  = Db.sql2o.open()){
             String endangered = "SELECT * FROM animals WHERE rangerid = :id AND type = 'Endangered';";
             List <EndangeredAnimal> allSighted = conn.createQuery(endangered)
-                    .addParameter("id",this.id)
+                    .addParameter("id",id)
                     .throwOnMappingFailure(false)
                     .executeAndFetch(EndangeredAnimal.class);
 
@@ -130,7 +130,7 @@ public class Ranger {
 
             String unthreatened = "SELECT * FROM animals WHERE rangerid = :id AND type = 'Unthreatened';";
             List <UnthreatenedAnimal> allUaSightings = conn.createQuery(unthreatened)
-                    .addParameter("id",this.id)
+                    .addParameter("id",id)
                     .throwOnMappingFailure(false)
                     .executeAndFetch(UnthreatenedAnimal.class);
             allSightings.addAll(allUaSightings);

@@ -1,0 +1,29 @@
+{{#partial "content"}}
+
+
+    <div class="container">
+
+        <div class="row row-cols-1 row-cols-md-3 g-3">
+    {{#each nAnimals}}
+                <div class="col">
+
+                    <div class="card h-100">
+                        <h6 class="sighthead">{{name}}</h6>
+                        <p class="sighttext">{{health}}</p>
+                        <p class="sighttext">{{ageRange}}</p>
+
+                        <p class="sighttext">{{ranger.name}}</p>
+
+                        <div class="card-footer">
+                                <p>{{timeRecorded}}</p>
+                            <p>{{location}}</p>
+                        </div>
+
+                    </div>
+
+                </div>
+        {{/each}}
+        </div>
+    </div>
+{{/partial}}
+{{>layout.hbs}}

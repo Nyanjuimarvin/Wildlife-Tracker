@@ -3,6 +3,7 @@ package Models;
 import org.sql2o.Connection;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.util.List;
 import java.util.Objects;
 
@@ -47,6 +48,10 @@ public class Sighting {
 
     public int getAnimalId() {
         return animalId;
+    }
+
+    public void setReadableDate() {
+        this.readableDate = DateFormat.getDateTimeInstance().format(timesighted);
     }
 
     public String getReadableDate() {

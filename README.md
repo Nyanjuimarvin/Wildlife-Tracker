@@ -11,6 +11,19 @@ This is an application that stores data given by users and retrieves it by the u
 
 ## Behavior Driven Development
 
+This application implements Create Read Update Delete ( CRUD ) operations in its entirety which rely on the basic database
+
+| Behavior                   | Input                                                                   | Expected Output                                                                                           |
+|----------------------------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| Register Ranger            | Ranger details that satisfy the given format                            | A new Ranger object is created and added to the database.                                                 |
+| Record Endangered Animal   | Endangered animal details as well as the location of sighting           | A new Endangered animal object is created along with a location object and both are added to the database |   
+| Record Unthreatened Animal | Endangered animal details as well as the location of sighting           | A new Endangered animal object is created along with a location object and both are added to the database |
+| View Sightings             | Sightings Link is clicked                                               | Sightings are queried and retrieved from the database                                                     |
+| View Ranger                | Ranger view links are clicked                                           | Specific ranger is queried and retrieved from the database                                                |
+| View Location              | Location Link is clicked                                                | The specific Location is queried and retrieved                                                            |
+| Delete Sighting(s)         | The delete button on each sighting or the delete all button is clicked  | The respective sighting or all sightings are deleted from the database                                    |
+
+
 ## Test Driven Development
 Each database operation method has been tested using Junit to make sure the correct operations take place without errors.
 

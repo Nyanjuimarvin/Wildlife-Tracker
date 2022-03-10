@@ -178,3 +178,115 @@ a{
     background-image:url(/images/rangerback.jpg);
     background-size:cover;
 }
+
+.sightcardback{
+    background-image:url(/images/giraffe.jpg);
+    background-size:cover;
+}
+
+.binoculars{
+    height:110px;
+    width:110px;
+}
+
+.rangerdetail{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+    align-items:center;
+}
+.rangercardpic{
+    height:40px;
+    width:40px;
+}
+
+.locpic{
+    height:100px;
+    width:100px;
+}
+
+.sighttext{
+    font-size:26px;
+    font-weight:bold;
+}
+
+.sighthead{
+    font-size:33px;
+    font-weight:bolder;
+}
+.link , .time{
+    color:green;
+}
+.link:hover{
+    color:#FF1493;
+}
+
+.sight-card{
+    background-color:#F5F5DC;
+}
+
+.btn1:hover{
+    color:#696969;
+    transform:translateY(-5px);
+}
+
+.coord{
+    color:	#FF1493;
+}
+
+.rangerpic{
+    height:70px;
+    width:70px;
+}
+
+.rangername{
+    margin-top:-60px;
+    margin-left:90px;
+    font-size:40px;
+    color:#FF1493;
+    font-weight:bolder;
+}
+
+.rangecard{
+    background-color:#F5F5DC;
+}
+
+.lion{
+    height:70px;
+    width:70px;
+}
+
+.animstat{
+    height:25px;
+    width;25px;
+    margin-right:30px;
+}
+
+.body{
+    background-color:#FAFAFA;
+}
+
+.footer{
+    margin-bottom:-20px;
+}
+
+.topname{
+    font-size:50px;
+}
+.key{
+    height:50px;
+    width:50px;
+    margin-right:10px;
+}
+
+.names{
+    color:#FF1493;
+}
+
+.menukey span{
+    color:green;
+}
+
+.animtext{
+    color:green;
+}

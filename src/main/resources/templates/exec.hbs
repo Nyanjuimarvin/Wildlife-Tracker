@@ -2,22 +2,36 @@
 
 
     <div class="container">
-
-        <div class="row row-cols-1 row-cols-md-3 g-3">
+    <h1 class="fw-bolder topname mt-4">~ {{ranger.name}}'s Sightings</h1>
+        <div class="text-center mt-5 menukey">
+            <img class="key" src="/images/health.png" alt="">
+            <span class="fs-3 fw-bold me-4">Health Status</span>
+            <img class="key"  src="/images/age.png" alt="">
+            <span  class="fs-3 fw-bold me-4">Age Range</span>
+            <img class="key"  src="/images/risk.png" alt="">
+            <span class="fs-3 fw-bold me-4">Risk Factor</span>
+        </div>
+        <div class="row row-cols-1 mt-4 mb-4 row-cols-md-3 g-4">
             {{#each sight}}
                 <div class="col">
 
-                    <div class="card h-100">
-                        <h6 class="sighthead">{{name}}</h6>
-                        <p class="sighttext">{{health}}</p>
-                        <p class="sighttext">{{ageRange}}</p>
-
-                        <p class="sighttext">{{type}}</p>
-
-                        <div class="card-footer">
-                            <p></p>
+                    <div class="card c-body sight-card h-100 p-3">
+                        <h3 class="text-center fs-1 fw-bolder names">{{name}}</h3>
+                        <div class="mb-1">
+                            <img class="animstat" src="/images/health.png" alt="">
+                            <span class="sighttext animtext"> {{health}}</span>
                         </div>
 
+                        <div class="mb-1">
+                            <img class="animstat" src="/images/age.png" alt="">
+                            <span class="sighttext animtext">{{ageRange}}</span>
+                        </div>
+
+                        <div class="mb-1">
+                            <img class="animstat" src="/images/risk.png" alt="">
+                            <span class="sighttext animtext"> {{type}}</span>
+                        </div>
+                        
                     </div>
 
                 </div>

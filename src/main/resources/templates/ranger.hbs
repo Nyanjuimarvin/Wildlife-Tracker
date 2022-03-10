@@ -3,16 +3,24 @@
 
     <div class="container">
 
-        <div class="row row-cols-1 row-cols-md-3 g-3">
-                <div class="col">
+        <div class="row row-cols-1 row-cols-md-3 g-5 mt-5 mb-5">
+                <div class="col mx-auto">
 
-                    <div class="card h-100">
-                        <h6 class="sighthead">{{ranger.name}}</h6>
-                        <p class="sighttext">{{ranger.badgeId}}</p>
-                        <p class="sighttext">{{ranger.contact}}</p>
-                        <div class="card-footer">
-                            <a href="/rangers/{{ranger.id}}/sightings">Sightings</a>
+                    <div class="card rangecard c-body h-100 p-3">
+                        <img class="rounded-circle rangerpic me-5" src="/images/ranger.png" alt="">
+                        <span class="rangername">{{ranger.name}}</span>
+
+                        <div class="mt-5">
+                        <img class="rangercardpic ms-4 me-3" src="/images/id-card.png" alt="">
+                        <span class="sighttext time">{{ranger.badgeId}}</span>
                         </div>
+
+                        <div class="ms-4 mt-3">
+                        <img class="rangercardpic me-3" src="/images/contact.png" alt="">
+                        <span class="sighttext time">{{ranger.contact}}</span>
+                        </div>
+
+                        <a class="text-decoration-none fs-2 fw-bolder link d-block mx-auto mt-3" href="/rangers/{{ranger.id}}/sightings">Sightings</a>
 
                     </div>
 

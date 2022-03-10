@@ -1,6 +1,7 @@
 import static spark.Spark.*;
 
 import Models.*;
+import org.w3c.dom.ranges.Range;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -17,7 +18,7 @@ public class App {
 
         get("/",(request, response) -> {
             Map <String, Object> model = new HashMap<>();
-            model.put("ranger",Ranger.all());
+            model.put("rangers",Ranger.all());
             return new ModelAndView(model,"index.hbs");
         },new HandlebarsTemplateEngine());
 
@@ -126,6 +127,7 @@ public class App {
             Map <String,Object> model = new HashMap<>();
             int rangerId = Integer.parseInt(request.params("id"));
             model.put("ranger",Ranger.find(rangerId));
+            model.put("rangers",Ranger.all());
             return new ModelAndView(model,"ranger.hbs");
         },new HandlebarsTemplateEngine());
 
@@ -134,6 +136,7 @@ public class App {
         get("/rangers/:id/sightings",(request, response) -> {
             Map <String,Object> model = new HashMap<>();
             int id = Integer.parseInt(request.params("id")) ;
+            model.put("ranger",Ranger.find(id));
             model.put("sight",Ranger.rangerSightings(id));
             System.out.println(Ranger.rangerSightings(id).size());
             return new ModelAndView(model,"exec.hbs");
@@ -142,23 +145,38 @@ public class App {
         get("/sightings/all",(request, response) -> {
             Map <String,Object> model = new HashMap<>();
             model.put("sight",Sighting.allSightings());
+            model.put("rangers",Ranger.all());
             System.out.println(Sighting.allSightings().size());
             return new ModelAndView(model,"sight.hbs");
             },new HandlebarsTemplateEngine());
 
 
         //Location at id
+        get("/locations/:id",(request, response) -> {
+            Map <String,Object> model = new HashMap<>();
+            int locationId = Integer.parseInt(request.params("id"));
+            model.put("location",Location.find(locationId));
+            model.put("rangers", Ranger.all());
+            return new ModelAndView(model,"location.hbs");
+        },new HandlebarsTemplateEngine());
 
-        //Animal at id
-
-        //Location at id
-
-        //Show Specific Sighting
 
         //Delete All Sightings
+        get("sightings/delete",(request, response) -> {
+            Map <String,Object> model = new HashMap<>();
+            Sighting.deleteAll();
+            response.redirect("/");
+            return null;
+        },new HandlebarsTemplateEngine());
 
         //Delete Specific Sighting
-
+        get("sightings/delete/:id",(request, response) -> {
+            Map <String,Object> model = new HashMap<>();
+            int id = Integer.parseInt(request.params("id"));
+            Sighting.deletebyId(id);
+            response.redirect("/");
+            return null;
+        },new HandlebarsTemplateEngine());
 
         //Show Specific Animal
 

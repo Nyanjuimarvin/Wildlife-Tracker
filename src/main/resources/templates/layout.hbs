@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<div class="container-fluid bg-success bg-opacity-50">
+<div class="container-fluid bg-success  bg-opacity-50">
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
         <a class="navbar-brand text-white fw-bold fs-1" href="/">W-LiFe</a>
@@ -24,27 +24,36 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav g-2 ms-auto">
+
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="/sightings/all">Sightings</a>
+                    <a class="nav-link fs-3 text-white" href="/rangers/new">Ranger</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-3 text-white" href="/sightings/all">Sightings</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="/rangers/new">Ranger</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="">Animal</a>
+                    <a class="nav-link fs-3 text-white" href="">Animal</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                         Record
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="/sightings/endangered">Endangered</a></li>
-                        <li><a class="dropdown-item" href="/sightings/normal">Unthreatened</a></li>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item fw-bold" href="/sightings/endangered">Endangered</a></li>
+                        <li><a class="dropdown-item fw-bold" href="/sightings/normal">Unthreatened</a></li>
                     </ul>
                 </li>
-                <li class="rangerlog">
-                    <a href=""><img class="rounded-circle icohead" src="/images/ranger1.png" alt=""></a>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img class="rounded-circle icohead" src="/images/ranger1.png" alt="">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                        {{#each rangers}}
+                        <li><a class="dropdown-item fw-bold" href="/rangers/{{id}}">{{name}}</a></li>
+                        {{/each}}
+                    </ul>
                 </li>
             </ul>
         </div>
@@ -54,7 +63,7 @@
 
 
 
-<div class="container-fluid">
+<div class="container-fluid maincont">
     {{#block "content"}}
     {{/block}}
 </div>

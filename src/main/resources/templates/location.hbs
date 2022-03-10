@@ -1,0 +1,21 @@
+{{#partial "content"}}
+
+
+    <div class="container mb-5">
+
+        <div class="row row-cols-1 row-cols-md-3 g-5 mt-5 mb-5">
+
+            <div class="col mx-auto">
+
+                <div class="card sight-card c-body p-3 h-100">
+                    <img class="rounded-circle locpic" src="/images/placeholder.png" alt="">
+                    <h3 class="fs-1 sighthead">{{location.name}}</h3>
+                    <p class="sighttext time">Latitude Co-ord : <span class="coord">{{location.latitude}} <sup>0</sup></span> </p>
+                    <p class="sighttext time">Longitude Co-ord: <span class="coord">{{location.longitude}} <sup>0</sup></span> </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{{/partial}}
+{{>layout.hbs}}

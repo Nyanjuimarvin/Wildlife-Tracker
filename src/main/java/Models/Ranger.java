@@ -49,7 +49,7 @@ public class Ranger {
     }
 
     public void setContact(String contact) throws InvalidRangerDetails {
-        if(contact.matches("[1-9]\\d{2}-[1-9]\\d{2}-\\d{6}")){
+        if( !contact.isEmpty() && contact.matches("[1-9]\\d{2}-[1-9]\\d{2}-\\d{6}")){
             this.contact = contact;
         }else{
             throw new InvalidRangerDetails("Please Enter Your Correct Contact Details");

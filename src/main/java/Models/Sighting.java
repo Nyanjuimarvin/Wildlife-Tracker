@@ -103,6 +103,10 @@ public class Sighting {
         try(Connection conn = Db.sql2o.open()){
             conn.createQuery("DELETE FROM sightings")
                     .executeUpdate();
+            conn.createQuery("DELETE FROM animals")
+                    .executeUpdate();
+            conn.createQuery("DELETE FROM locations")
+                    .executeUpdate();
         }
     }
 

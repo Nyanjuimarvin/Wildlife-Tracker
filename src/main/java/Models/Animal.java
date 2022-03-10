@@ -143,7 +143,7 @@ public class Animal {
 
     public void saveAnimal(){
         try(Connection conn = Db.sql2o.open() ){
-            String sql = "INSERT INTO animals (name, agerange, health,rangerId,type,location,timesighted) VALUES (:name, :age , :health, :rangerId, :type, :location,now())";
+            String sql = "INSERT INTO animals (name, agerange, health,rangerId,type,location) VALUES (:name, :age , :health, :rangerId, :type, :location)";
             this.id = (int) conn.createQuery(sql,true)
                      .addParameter("name",this.name)
                      .addParameter("age",this.ageRange)

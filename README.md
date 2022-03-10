@@ -74,7 +74,7 @@ localhost:4567
 ```
 
 ## Live Link
-
+https://w-life.herokuapp.com/
 ## Contact
 For any issues, additional requests or compliments, reach out to me using:
 * E-mail - marnyanjui@gmail.com

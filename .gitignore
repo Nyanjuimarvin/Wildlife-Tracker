@@ -39,9 +39,9 @@ build/
 out/
 out
 .gradle
-gradle
-.gradle/
 gradlew.bat
+.gradle/
+gradle
 gradlew
 settings.gradle
 

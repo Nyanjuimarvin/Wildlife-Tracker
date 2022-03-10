@@ -12,6 +12,7 @@ repositories {
 
 mainClassName = 'App'
 sourceCompatibility = 1.8
+applicationName = 'w-life'
 
 dependencies {
 
@@ -29,3 +30,5 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+task stage(dependsOn: ['clean', 'installDist'])

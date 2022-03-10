@@ -178,9 +178,5 @@ public class App {
             return null;
         },new HandlebarsTemplateEngine());
 
-        //Show Specific Animal
-
-        //Show Ranger Details
-
     }
 }

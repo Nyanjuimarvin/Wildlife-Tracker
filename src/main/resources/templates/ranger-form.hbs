@@ -5,16 +5,16 @@
     <form action="/rangers" method="post">
         <div class="form-group mb-4">
             <label for="name" class="fs-3 text-white mb-2">Name:</label>
-            <input type="text" pattern="([a-zA-z]+|[a-zA-Z]+\s[a-zA-Z]+)*" class="form-control text-dark fs-5 fw-bold" id="name" name="name">
+            <input type="text" pattern="([a-zA-z]+|[a-zA-Z]+\s[a-zA-Z]+)*" class="form-control text-dark fs-5 fw-bold" id="name" name="name" required>
         </div>
         <div class="form-group mb-4">
             <label for="" class="fs-3 text-white mb-2">Badge Id:</label>
-            <input type="number" min="1" max="100000" class="form-control fs-5 fw-bold" id="badgeId" name="badgeId" placeholder="From 1 to 100000">
+            <input type="number" min="1" max="100000" class="form-control fs-5 fw-bold" id="badgeId" name="badgeId" placeholder="From 1 to 100000" required>
         </div>
         <div class="form-group mb-4">
 
             <label for="" class="fs-3 text-white mb-2">Contact</label>
-            <input type="text" pattern="[1-9]\d{2}-[1-9]\d{2}-\d{6}" class="form-control fs-5 fw-bold" id="contact" name="contact" placeholder="Must take on this form: 123-456-789012">
+            <input type="text" pattern="[1-9]\d{2}-[1-9]\d{2}-\d{6}" class="form-control fs-5 fw-bold" id="contact" name="contact" placeholder="Must take on this form: 123-456-789012" required>
         </div>
 
         <button class="btn fs-3 mt-5 text-white fw-bolder btn-outline-success d-block mx-auto" type="submit">Register</button>
